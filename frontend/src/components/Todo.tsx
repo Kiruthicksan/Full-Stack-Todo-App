@@ -24,7 +24,7 @@ const Todo = () => {
   useEffect(() => {
     try {
       const fetchTask = async () => {
-        const response = await axios.get("http://localhost:5000/api/tasks");
+        const response = await axios.get("https://full-stack-todo-app-pado.onrender.com/api/tasks");
         const tasks = response.data.tasks;
         setItems(tasks);
       };
@@ -37,7 +37,7 @@ const Todo = () => {
   const handleAdd = async () => {
     try {
       if (inputValue.trim() === "") return;
-      const response = await axios.post("http://localhost:5000/api/tasks", {
+      const response = await axios.post("https://full-stack-todo-app-pado.onrender.com/api/tasks", {
         task: inputValue,
       });
       const newData = response.data.newTask;
@@ -50,7 +50,7 @@ const Todo = () => {
 
   const handleToggle = async (id: string, completed: boolean) => {
     try {
-      await axios.put(`http://localhost:5000/api/task/${id}`, {
+      await axios.put(`https://full-stack-todo-app-pado.onrender.com/api/task/${id}`, {
         completed: !completed,
       });
       setItems((prev) =>
@@ -65,7 +65,7 @@ const Todo = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/task/${id}`);
+      await axios.delete(`https://full-stack-todo-app-pado.onrender.com/api/task/${id}`);
       setItems((prev) => prev.filter((task) => task._id !== id));
     } catch (error) {
       console.error(error);
@@ -75,7 +75,7 @@ const Todo = () => {
   const handleUpdate = async (id: string) => {
     try {
       if(editText.trim() === "") return null
-      await axios.put(`http://localhost:5000/api/task/${id}`, {
+      await axios.put(`https://full-stack-todo-app-pado.onrender.com/api/task/${id}`, {
         task: editText,
       });
       setItems((prev) =>
